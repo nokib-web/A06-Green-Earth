@@ -16,8 +16,9 @@ const displayCategories = (categories) => {
         const categoriesDiv = document.createElement("div")
         categoriesDiv.innerHTML = `
         <div id="categories-container">
+         
+            <button  class="btn my-2 text-gray-700  w-full btn-soft btn-success">${category.category_name}</button>
             
-            <p class="my-2 font-bold text-gray-500"> ${category.category_name}</p>
           
 
          </div>
@@ -54,7 +55,7 @@ const displayAllPlants = (plants) => {
 
 
 
-                <h1 class="text-xl font-bold">${plant.name}</h1>
+                <h1  class="text-xl  font-bold">${plant.name}</h1>
                 <p class="text-gray-500">${plant.description}</p>
                 <div class="flex justify-between items-center">
                     <a> <button class="btn rounded-2xl my-2 text-[#15803d] bg-[#DCFCE7]">${plant.category}</button></a>
@@ -72,6 +73,8 @@ const displayAllPlants = (plants) => {
 
 
 loadAllPlants()
+
+
 
 
 // const loadPlantsByCategories = (id)=>{
