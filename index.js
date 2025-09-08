@@ -52,19 +52,19 @@ const displayAllPlants = (plants) => {
     for (let plant of plants) {
         const plantsDiv = document.createElement("div")
         plantsDiv.innerHTML = `
-             <div class="bg-white rounded-lg p-4">
+             <div class="bg-white cards rounded-lg p-4">
                 <img class=" rounded-lg h-[330px] w-full" src="${plant.image}" alt="">
 
 
 
-                <h1 onclick="loadCardDetails(${plant.id})" class="text-xl  font-bold">${plant.name}</h1>
+                <h1 onclick="loadCardDetails(${plant.id})" class="text-xl tree-name font-bold">${plant.name}</h1>
                 <p class="text-gray-500">${plant.description}</p>
                 <div class="flex justify-between items-center">
                     <a> <button class="btn rounded-2xl my-2 text-[#15803d] bg-[#DCFCE7]">${plant.category}</button></a>
-                    <p>৳${plant.price}</p>
+                    <p class="tree-price">৳${plant.price}</p>
                 </div>
 
-                <button class="btn w-full bg-[#15803d] text-white rounded-3xl">Add to Cart</button>
+                <button class="btn cart-btn w-full bg-[#15803d] text-white rounded-3xl">Add to Cart</button>
             </div>
         `
 
@@ -74,14 +74,6 @@ const displayAllPlants = (plants) => {
 }
 
 loadAllPlants()
-
-
-
-
-
-
-
-
 
 
 
@@ -122,19 +114,19 @@ const displayByCategories = (cards) => {
     for (let card of cards) {
         const plantsByCategoryContainerDiv = document.createElement("div")
         plantsByCategoryContainerDiv.innerHTML = `
-        <div class="bg-white rounded-lg p-4">
+        <div class="bg-white cards rounded-lg p-4">
                 <img class=" rounded-lg h-[330px] w-full" src="${card.image}" alt="">
 
 
 
-                <h1 onclick="loadCardDetails(${card.id})"  class="text-xl  font-bold"  >${card.name}</h1>
+                <h1 onclick="loadCardDetails(${card.id})"  class="text-xl tree-name font-bold"  >${card.name}</h1>
                 <p class="text-gray-500">${card.description}</p>
                 <div class="flex justify-between items-center">
                     <a> <button class="btn rounded-2xl my-2 text-[#15803d] bg-[#DCFCE7]">${card.category}</button></a>
-                    <p>৳${card.price}</p>
+                    <p class="tree-price">৳${card.price}</p>
                 </div>
 
-                <button class="btn w-full bg-[#15803d] text-white rounded-3xl">Add to Cart</button>
+                <button class="btn w-full cart-btn bg-[#15803d] text-white rounded-3xl">Add to Cart</button>
             </div>
         
         `;
@@ -189,15 +181,5 @@ window.onload = function () {
     loadingSpinner.style.display = 'none'; 
     
 };
-
-
-
-
-
-
-
-
-
-
 
 
