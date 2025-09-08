@@ -30,7 +30,7 @@
 
 <body class="bg-[#f0fdf4] max-w-[1920px] mx-auto">
     <!-- Navbar section -->
-    <header >
+    <header>
         <div class="navbar bg-[#15803d] max-w-[1920px] mx-auto lg:px-10 ">
             <div class="navbar-start">
                 <div class="dropdown">
@@ -91,9 +91,11 @@
         <!-- categories div -->
         <div class="lg:w-1/10 text-center lg:text-left">
             <h1 class="text-2xl font-bold">Categories</h1>
-            <button class="btn my-2 text-gray-700  w-full btn-soft btn-success">All Trees</button>
+            <button onclick="loadAllPlants()" id="all-trees" class="btn my-2 text-gray-700  w-full btn-soft btn-success">All Trees</button>
+
+
             <div id="categories-container">
-               
+
 
 
             </div>
@@ -102,16 +104,20 @@
 
         <!-- Cards div -->
 
-        <div class="lg:w-7.5/10 grid grid-rows-1 lg:grid-cols-3 gap-5  " id="plants-container">
+        <div>
+            <div class="lg:w-7.5/10 grid grid-rows-1 lg:grid-cols-3 gap-5 plant-container " id="plants-container">
 
-
-
+            </div>
+          
 
         </div>
 
+
+
+
         <!-- Your cart div -->
 
-        <div class="lg:w-1.5/10 bg-white p-4" id="cart">
+        <div class=" lg:w-1.5/10 bg-white p-4" id="cart">
             <h1 class="text-2xl font-bold">Your Cart</h1>
             <p></p>
         </div>
@@ -190,9 +196,9 @@
                     <input type="email" class="input" placeholder="Your Email Address" />
                     <select class="select select-md text-gray-500">
                         <option disabled selected>Numbers of Trees</option>
-                        <option>10</option>
-                        <option>50</option>
-                        <option>100</option>
+                        <option>1 Tree-5$</option>
+                        <option>5 Tree-25$</option>
+                        <option>10 Tree-50$</option>
                     </select>
 
                     <button class="btn rounded-2xl my-2 text-[#15803d] bg-[#facc15]">Donate Now</button>
@@ -205,9 +211,9 @@
 
 
     <!-- Footer section -->
-     <div class="max-w-[1920px] mx-auto bg-[#14532D] items-center">
+    <div class="max-w-[1920px] mx-auto bg-[#14532D] items-center">
         <p class="text-white text-center py-7">© 2025 Green Earth. All Rights Reserved.</p>
-     </div>
+    </div>
 
 
 
