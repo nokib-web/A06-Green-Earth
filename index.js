@@ -140,7 +140,7 @@ const displayByCategories = (cards) => {
         `;
         plantsByCategoryContainer.append(plantsByCategoryContainerDiv);
     }
-    
+
 
 }
 
@@ -149,25 +149,25 @@ const displayByCategories = (cards) => {
 
 
 // Card details
-const loadCardDetails = async (id)=>{
- const url = `https://openapi.programming-hero.com/api/plant/${id}`
- 
+const loadCardDetails = async (id) => {
+    const url = `https://openapi.programming-hero.com/api/plant/${id}`
 
-   
+
+
 
     const res = await fetch(url);
     const details = await res.json();
     displayCardDetails(details.plants);
-    
+
 
 
 
 
 
 }
-const displayCardDetails =(plants)=>{
-  const detailsContainer = document.getElementById("details-container");
-  detailsContainer.innerHTML=`
+const displayCardDetails = (plants) => {
+    const detailsContainer = document.getElementById("details-container");
+    detailsContainer.innerHTML = `
    <div class="bg-white rounded-lg max-w-[600px] space-y-2 p-5">
         <h1 class="text-2xl  font-bold"> ${plants.name}</h1>
         <img class=" rounded-lg h-[330px] w-full" src="${plants.image}" alt="">
@@ -178,8 +178,17 @@ const displayCardDetails =(plants)=>{
     </div>
   
   `;
-  document.getElementById("word_modal").showModal();
+    document.getElementById("word_modal").showModal();
 }
+
+
+// loading spinner
+
+window.onload = function () {
+    const loadingSpinner = document.getElementById('loading-spinner');
+    loadingSpinner.style.display = 'none'; 
+    
+};
 
 
 
