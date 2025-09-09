@@ -79,12 +79,14 @@ const displayAllPlants = (plants) => {
         setTimeout(() => {
             const addToCartBtn = plantsDiv.querySelector('.add-to-cart-btn');
             addToCartBtn.addEventListener('click', () => {
+            
                 const name = plantsDiv.querySelector('.tree-name').textContent.trim();
                 const priceText = plantsDiv.querySelector('.tree-price').textContent.trim();
                 const price = parseInt(priceText.replace('৳', '').trim());
 
                 if (!isNaN(price)) {
                     addToCart(name, price);
+                    alert(`${plant.name} will be added to cart!`);
                 }
             });
         }, 0);
@@ -167,6 +169,7 @@ const displayByCategories = (cards) => {
 
                 if (!isNaN(price)) {
                     addToCart(name, price);
+                    alert(`${card.name} will be added to cart!`);
                 }
             });
         }, 0);
