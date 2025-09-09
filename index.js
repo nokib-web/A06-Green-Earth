@@ -79,9 +79,9 @@ const displayAllPlants = (plants) => {
         setTimeout(() => {
             const addToCartBtn = plantsDiv.querySelector('.add-to-cart-btn');
             addToCartBtn.addEventListener('click', () => {
-                const name = plantsDiv.querySelector('.tree-name').innerHTML;
-                const priceText = plantsDiv.querySelector('.tree-price').innerHTML;
-                const price = parseInt(priceText.replace('৳', ''));
+                const name = plantsDiv.querySelector('.tree-name').textContent.trim();
+                const priceText = plantsDiv.querySelector('.tree-price').textContent.trim();
+                const price = parseInt(priceText.replace('৳', '').trim());
 
                 if (!isNaN(price)) {
                     addToCart(name, price);
@@ -159,11 +159,11 @@ const displayByCategories = (cards) => {
             addToCartBtn.addEventListener('click', () => {
 
 
-                const name = plantsByCategoryContainerDiv.querySelector('.tree-name').innerHTML;
-                const priceText = plantsByCategoryContainerDiv.querySelector('.tree-price').innerHTML;
+                const name = plantsByCategoryContainerDiv.querySelector('.tree-name').textContent.trim();
+                const priceText = plantsByCategoryContainerDiv.querySelector('.tree-price').textContent.trim();
 
 
-                const price = parseInt(priceText.replace('৳', ''));
+                const price = parseInt(priceText.replace('৳', '').trim());
 
                 if (!isNaN(price)) {
                     addToCart(name, price);
