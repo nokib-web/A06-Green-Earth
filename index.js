@@ -44,6 +44,12 @@ const loadAllPlants = () => {
 
 const displayAllPlants = (plants) => {
 
+
+
+
+
+
+
     const plantsContainer = document.getElementById("plants-container")
     plantsContainer.innerHTML = "";
 
@@ -52,7 +58,7 @@ const displayAllPlants = (plants) => {
     for (let plant of plants) {
         const plantsDiv = document.createElement("div")
         plantsDiv.innerHTML = `
-             <div class="bg-white cards rounded-lg p-4">
+             <div class="bg-white card-details rounded-lg p-4">
                 <img class=" rounded-lg h-[330px] w-full" src="${plant.image}" alt="">
 
 
@@ -61,12 +67,29 @@ const displayAllPlants = (plants) => {
                 <p class="text-gray-500">${plant.description}</p>
                 <div class="flex justify-between items-center">
                     <a> <button class="btn rounded-2xl my-2 text-[#15803d] bg-[#DCFCE7]">${plant.category}</button></a>
-                    <p class="tree-price">৳${plant.price}</p>
+                    <p class=" tree-price">৳${plant.price}</p>
                 </div>
 
-                <button class="btn cart-btn w-full bg-[#15803d] text-white rounded-3xl">Add to Cart</button>
+                <button class="btn add-to-cart-btn w-full bg-[#15803d] text-white rounded-3xl">Add to Cart</button>
             </div>
-        `
+        `;
+
+        // event handler for add to cart button
+
+        setTimeout(() => {
+            const addToCartBtn = plantsDiv.querySelector('.add-to-cart-btn');
+            addToCartBtn.addEventListener('click', () => {
+                const name = plantsDiv.querySelector('.tree-name').innerHTML;
+                const priceText = plantsDiv.querySelector('.tree-price').innerHTML;
+                const price = parseInt(priceText.replace('৳', ''));
+
+                if (!isNaN(price)) {
+                    addToCart(name, price);
+                }
+            });
+        }, 0);
+
+
 
         plantsContainer.append(plantsDiv);
 
@@ -79,7 +102,7 @@ loadAllPlants()
 
 
 
-// Load by catagory section api
+// Load by category section api
 
 const removeActive = () => {
     const categoryBtn = document.querySelectorAll(".category-btn");
@@ -110,11 +133,11 @@ const loadByCategories = (id) => {
 const displayByCategories = (cards) => {
     const plantsByCategoryContainer = document.getElementById("plants-container")
     plantsByCategoryContainer.innerHTML = "";
-
     for (let card of cards) {
         const plantsByCategoryContainerDiv = document.createElement("div")
+
         plantsByCategoryContainerDiv.innerHTML = `
-        <div class="bg-white cards rounded-lg p-4">
+        <div class="bg-white card-details rounded-lg p-4">
                 <img class=" rounded-lg h-[330px] w-full" src="${card.image}" alt="">
 
 
@@ -126,15 +149,38 @@ const displayByCategories = (cards) => {
                     <p class="tree-price">৳${card.price}</p>
                 </div>
 
-                <button class="btn w-full cart-btn bg-[#15803d] text-white rounded-3xl">Add to Cart</button>
+                <button class="btn w-full add-to-cart-btn bg-[#15803d] text-white rounded-3xl">Add to Cart</button>
             </div>
         
         `;
+        setTimeout(() => {
+
+            const addToCartBtn = plantsByCategoryContainerDiv.querySelector('.add-to-cart-btn');
+            addToCartBtn.addEventListener('click', () => {
+
+
+                const name = plantsByCategoryContainerDiv.querySelector('.tree-name').innerHTML;
+                const priceText = plantsByCategoryContainerDiv.querySelector('.tree-price').innerHTML;
+
+
+                const price = parseInt(priceText.replace('৳', ''));
+
+                if (!isNaN(price)) {
+                    addToCart(name, price);
+                }
+            });
+        }, 0);
+
+
+
+
+
         plantsByCategoryContainer.append(plantsByCategoryContainerDiv);
     }
 
 
 }
+loadByCategories()
 
 
 
@@ -178,8 +224,49 @@ const displayCardDetails = (plants) => {
 
 window.onload = function () {
     const loadingSpinner = document.getElementById('loading-spinner');
-    loadingSpinner.style.display = 'none'; 
-    
+    loadingSpinner.style.display = 'none';
+
 };
 
 
+
+//  code for adding the item on card
+
+
+const cartItems = [];
+let total = 0;
+
+function updateCart() {
+    const cartContainer = document.querySelector('.cart-items');
+    const totalElement = document.querySelector('.cart-total');
+    cartContainer.innerHTML = '';
+
+    cartItems.forEach((item, index) => {
+        const div = document.createElement('div');
+        div.classList.add('cart-item', 'flex', 'justify-between', 'items-center');
+
+        div.innerHTML = `
+      <span>${item.name} <br> ৳${item.price}</span>
+      
+      <button onclick="removeFromCart(${index})" class=" remove-btn "><i class="fa-solid fa-x"></i></button>
+    `;
+
+        cartContainer.appendChild(div);
+    });
+
+    totalElement.innerHTML = `<div>Total:  ৳${total}</div>`;
+}
+
+
+function addToCart(name, price) {
+    cartItems.push({ name, price });
+    total += price;
+    updateCart();
+}
+
+
+function removeFromCart(index) {
+    total -= cartItems[index].price;
+    cartItems.splice(index, 1);
+    updateCart();
+}
